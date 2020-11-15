@@ -16,12 +16,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          AppHeader(),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 16.6),
-            child: Form(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            AppHeader(),
+            Form(
               key: formKey,
               child: Column(
                 children: [
@@ -41,18 +41,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     },
                   ),
-                  RaisedButton(
-                      child: Text('Log in'),
-                      onPressed: (){
-                    if(formKey.currentState.validate()){
-                      formKey.currentState.save();
-                    }
-                  }),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Text('Don\'t have an account?'),
+                  FlatButton(onPressed: (){}, child: Text('Register here!')),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 64.0,
+                    child: RaisedButton(
+                        child: Text('Log in'),
+
+                        onPressed: (){
+                      if(formKey.currentState.validate()){
+                        formKey.currentState.save();
+                      }
+                    }),
+                  ),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
