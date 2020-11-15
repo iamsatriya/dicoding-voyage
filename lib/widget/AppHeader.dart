@@ -7,7 +7,19 @@ class AppHeader extends StatelessWidget {
       margin: EdgeInsets.only(top: 40.0),
       child: Center(
         child: Column(
-          children: [Text('Voyage', style: TextStyle(fontSize: 64.0),), Text('Your Travel Buddy', style: TextStyle(fontSize: 12.0),)],
+          children: [
+            Text(
+              'VOYAGE',
+              style: TextStyle(
+                  fontSize: 64.0,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+            ),
+            Text(
+              'Your Travel Buddy',
+              style: TextStyle(fontSize: 12.0, color: Colors.white),
+            )
+          ],
         ),
       ),
     );

@@ -20,7 +20,7 @@ class LoginInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black26
+        color: Color(0xCC000000),
       ),
       margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.6),
       padding: EdgeInsets.all(8.0),
@@ -31,28 +31,39 @@ class LoginInput extends StatelessWidget {
           icon,
           Flexible(
               child: Row(
-                children: [
-                  Flexible(
-                    child: TextFormField(
-                      validator: (value) =>
-                          value.isEmpty ? 'Please enter your $label' : null,
-                      obscureText: label.toLowerCase() == 'password' && isHidePassword
-                          ? true
-                          : false,
-                      onSaved: (value) => onSaveInput(value),
-                      decoration: InputDecoration.collapsed(hintText: 'Enter your $label'),
+            children: [
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: TextFormField(
+                    textInputAction: TextInputAction.next,
+                    style: TextStyle(color: Colors.orangeAccent, fontWeight: FontWeight.w300),
+                    validator: (value) =>
+                        value.isEmpty ? 'Please enter your $label' : null,
+                    obscureText:
+                        label.toLowerCase() == 'password' && isHidePassword
+                            ? true
+                            : false,
+                    onSaved: (value) => onSaveInput(value),
+                    decoration: InputDecoration.collapsed(
+                        hintText: 'Enter your $label',
+                        hintStyle: TextStyle(color: Colors.orangeAccent, fontWeight: FontWeight.w300),
+                        fillColor: Colors.orangeAccent,
                     ),
                   ),
-                  Visibility(
-                    visible: label.toLowerCase() == 'password' ? true : false,
-                    child: IconButton(
-                      icon: Icon(
-                          isHidePassword ? Icons.visibility : Icons.visibility_off),
-                      onPressed: showHidePassword,
-                    ),
-                  ),
-                ],
-              ))
+                ),
+              ),
+              Visibility(
+                visible: label.toLowerCase() == 'password' ? true : false,
+                child: IconButton(
+                  icon: Icon(
+                      isHidePassword ? Icons.visibility : Icons.visibility_off),
+                  onPressed: showHidePassword,
+                  color: Colors.orangeAccent,
+                ),
+              ),
+            ],
+          ))
         ],
       ),
     );
