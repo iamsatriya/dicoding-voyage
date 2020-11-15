@@ -20,10 +20,11 @@ class LoginInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xCC000000),
+        color: Color(0xAA000000),
+        borderRadius: BorderRadius.circular(16.0),
       ),
       margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.6),
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(12.0),
       height: 64.0,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -17,7 +17,7 @@ class AppHeader extends StatelessWidget {
             ),
             Text(
               'Your Travel Buddy',
-              style: TextStyle(fontSize: 12.0, color: Colors.white),
+              style: TextStyle(fontSize: 14.0, color: Colors.white),
             )
           ],
         ),
