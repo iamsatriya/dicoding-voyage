@@ -11,6 +11,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String username = '';
   String password = '';
   bool isHidePassword = true;
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,35 +19,38 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Column(
         children: [
           AppHeader(),
-          Column(
-            children: [
-              LoginInput(
-                icon: Icon(Icons.perm_identity),
-                label: 'Username',
-                onChangeInput: (String val) {
-                  setState(() {
-                    username = val;
-                    print(username);
-                  });
-                },
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 16.6),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  LoginInput(
+                    icon: Icon(Icons.perm_identity),
+                    label: 'Username',
+                    onSaveInput: (value) => username = value,
+                  ),
+                  LoginInput(
+                    icon: Icon(Icons.lock),
+                    label: 'Password',
+                    onSaveInput: (value) => password = value,
+                    isHidePassword: isHidePassword,
+                    showHidePassword: () {
+                      setState(() {
+                        isHidePassword = !isHidePassword;
+                      });
+                    },
+                  ),
+                  RaisedButton(
+                      child: Text('Log in'),
+                      onPressed: (){
+                    if(formKey.currentState.validate()){
+                      formKey.currentState.save();
+                    }
+                  }),
+                ],
               ),
-              LoginInput(
-                icon: Icon(Icons.lock),
-                label: 'Password',
-                onChangeInput: (String val) {
-                  setState(() {
-                    password = val;
-                    print(password);
-                  });
-                },
-                isHidePassword: isHidePassword,
-                showHidePassword: () {
-                  setState(() {
-                    isHidePassword = !isHidePassword;
-                  });
-                },
-              )
-            ],
+            ),
           ),
         ],
       ),

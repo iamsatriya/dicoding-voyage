@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoginInput extends StatelessWidget {
-  final TextEditingController textfieldController = TextEditingController();
-  final Function(String) onChangeInput;
+  final Function(String) onSaveInput;
   final Function showHidePassword;
   final String label;
   final Icon icon;
@@ -10,7 +9,7 @@ class LoginInput extends StatelessWidget {
 
   LoginInput(
       {Key key,
-      @required this.onChangeInput,
+      @required this.onSaveInput,
       @required this.label,
       @required this.icon,
       this.isHidePassword = true,
@@ -26,14 +25,13 @@ class LoginInput extends StatelessWidget {
             child: Column(
           children: [
             Text(label),
-            TextField(
-              controller: textfieldController,
-              // TODO: fix onChange for call onChangeInput with parameter
-              //onChanged: onChangeInput('text'),
-              onEditingComplete: () => onChangeInput(textfieldController.text),
+            TextFormField(
+              validator: (value) =>
+                  value.isEmpty ? 'Please enter your $label' : null,
               obscureText: label.toLowerCase() == 'password' && isHidePassword
                   ? true
                   : false,
+              onSaved: (value) => onSaveInput(value),
             ),
             Visibility(
               visible: label.toLowerCase() == 'password' ? true : false,
